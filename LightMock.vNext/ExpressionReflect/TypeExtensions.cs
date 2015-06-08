@@ -1,4 +1,6 @@
-﻿namespace ExpressionReflect
+﻿using System.Reflection;
+
+namespace ExpressionReflect
 {
 	using System;
 
@@ -8,7 +10,7 @@
 		{
 			bool isFunc = false;
 
-			if (type.IsGenericType)
+			if (type.GetTypeInfo().IsGenericType)
 			{
 				Type definition = type.GetGenericTypeDefinition();
 				isFunc = definition == typeof(Func<>) ||
@@ -25,7 +27,7 @@
 		{
 			bool isAction = type == typeof(Action);
 
-			if (type.IsGenericType)
+			if (type.GetTypeInfo().IsGenericType)
 			{
 				Type definition = type.GetGenericTypeDefinition();
 
@@ -43,7 +45,7 @@
 		{
 			bool isPredicate = false;
 
-			if (type.IsGenericType)
+			if (type.GetTypeInfo().IsGenericType)
 			{
 				Type definition = type.GetGenericTypeDefinition();
 				isPredicate = definition == typeof(Predicate<>);

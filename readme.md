@@ -1,18 +1,21 @@
-# LightMock #
+# LightMock.vNext #
 
-**LightMock** is a simple mocking library that can be used on platforms that does not allow dynamic code generation.    
+**LightMock.vNext** is a port of Bernhard Richter's LightMock library and mocking framework to .NET Core / CoreCLR / vNext. LightMock.vNext is compatible with xUnit.NET.
 
 ## Installing ##
+
+This branch is for DNX Core 5.0 only. You will need to install both LightMock and LightMock.vNext to account for both DNX 4.x and DNX Core 5.0.
 
 <div class="nuget-badge" >
    <p>
          <code>PM&gt; Install-Package LightMock </code>
    </p>
+   <p>
+         <code>PM&gt; Install-Package LightMock.vNext </code>
+   </p>
 </div>
 
-This adds a reference to the **LightMock** in the target project.
-
-The **LightMock** library is a a portable class library that makes it possible to use this across all platforms including iOS and Android.
+This adds a reference to both **LightMock** and **LightMock.vNext** in the target project.
 
 
 ## Creating a mock object ##
@@ -58,7 +61,8 @@ The *Assert* method is used to verify that the given method has been executed th
 
 	//Arrange
 	var mockContext = new MockContext<IFoo>();
-	var fooMock = new FooMock(mockContext);            
+	var fooMock = new FooMock(mockContext);
+	mockContext.Arrange(f => f.Execute("SomeValue")).Returns("AnotherValue");
 
 	//Act
 	fooMock.Execute("SomeValue");            
@@ -75,16 +79,8 @@ If we don't care about the actual argument value, we can use a special class cal
 
     fooMock.Execute("SomeValue");
 
-    mockContext.Assert(f => f.Execute(The<string>.IsAnyValue), Invoked.Once);                        	
-
-We call also use this class to perform custom verification.
-
-    var mockContext = new MockContext<IFoo>();
-    var fooMock = new FooMock(mockContext);
-
-    fooMock.Execute("SomeValue");
-                        
-    mockContext.Assert(f => f.Execute(The<string>.Is(s => s.StartsWith("Some"))), Invoked.Once);
+    mockContext.Assert(f => f.Execute(The<string>.IsAnyValue), Invoked.Once);    
+	
 
 ## Arrangements ##
 
@@ -127,6 +123,13 @@ Execute a callback
 	fooMock.Execute("SomeValue");
 
 	Assert.AreEqual("SomeValue", callBackResult);
+                    	
 
+We call also use this class to perform custom verification.
 
+    var mockContext = new MockContext<IFoo>();
+    var fooMock = new FooMock(mockContext);
 
+    fooMock.Execute("SomeValue");
+                        
+    mockContext.Assert(f => f.Execute(The<string>.Is(s => s.StartsWith("Some"))), Invoked.Once);

@@ -24,6 +24,11 @@
     https://github.com/seesharper/LightMock
     http://twitter.com/bernhardrichter
 ******************************************************************************/
+
+using System.Runtime.CompilerServices;
+
+[assembly:InternalsVisibleTo("LightMock.Tests.vNext")]
+
 namespace LightMock
 {
     using System.Linq.Expressions;

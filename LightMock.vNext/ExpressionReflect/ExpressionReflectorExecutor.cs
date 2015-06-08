@@ -8,7 +8,7 @@ namespace ExpressionReflect
 	using System.Linq;
 	using System.Linq.Expressions;
 	using System.Reflection;
-
+    
 	/// <summary>
 	/// An expression visitor that translates the expression tree to reflection calls.
 	/// </summary>
@@ -87,7 +87,7 @@ namespace ExpressionReflect
 
 			Type[] genericArguments = type.GetGenericArguments();
 			MethodInfo methodInfo = this.FindMethod(methodName, genericArguments);
-			@delegate = Delegate.CreateDelegate(type, executor, methodInfo);
+			@delegate = methodInfo.CreateDelegate(type, executor);
 
 			return this.VisitConstant(Expression.Constant(@delegate));
 
