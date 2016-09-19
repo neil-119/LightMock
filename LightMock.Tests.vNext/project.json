@@ -1,29 +1,23 @@
 {
-    "version": "1.0.0-*",
-    "description": "",
-    "authors": [ "" ],
-    "tags": [ "" ],
-    "projectUrl": "",
-    "licenseUrl": "",
+  "version": "1.0.0-*",
 
-    "dependencies": {
-      "Xunit": "2.1.0-beta2-*",
-      "Xunit.runner.dnx": "2.1.0-beta2-*",
-      "LightMock.vNext": "1.0.0-*"
-    },
+  "dependencies": {
+    "LightMock.vNext": "1.0.0-*",
+    "xunit": "2.2.0-beta2-build3300",
+    "dotnet-test-xunit": "2.2.0-preview2-build1029"
+  },
 
-    "commands": {
-      "test": "xunit.runner.dnx"
-    },
+  "testRunner": "xunit",
 
-    "frameworks": {
-        "dnxcore50": {
-            "dependencies": {
-                "System.Collections": "4.0.10-beta-22816",
-                "System.Linq": "4.0.0-beta-22816",
-                "System.Threading": "4.0.10-beta-22816",
-                "Microsoft.CSharp": "4.0.0-beta-22816"
-            }
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": "dnxcore50",
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0"
         }
+      }
     }
+  }
 }
