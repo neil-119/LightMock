@@ -1,26 +1,26 @@
 {
-    "version": "1.0.0-*",
-    "description": "",
-    "authors": [ "Bernhard Richter" ],
-    "tags": [ "lightmock-vnext" ],
-    "projectUrl": "https://github.com/neil-119/LightMock",
-    "licenseUrl": "http://opensource.org/licenses/MIT",
+  "version": "1.0.0-*",
+  "description": "",
+  "authors": ["Bernhard Richter"],
 
-    "dependencies": {
-        "System.Reflection": "4.0.10-beta-22816",
-        "System.Reflection.TypeExtensions": "4.0.0-beta-22816",
-        "System.Runtime.Extensions": "4.0.10-beta-22816",
-        "System.Globalization": "4.0.10-beta-22816"
-    },
+  "dependencies": {},
 
-    "frameworks": {
-        "dnxcore50": {
-            "dependencies": {
-                "System.Collections": "4.0.10-beta-22816",
-                "System.Linq": "4.0.0-beta-22816",
-                "System.Threading": "4.0.10-beta-22816",
-                "Microsoft.CSharp": "4.0.0-beta-22816"
-            }
-        }
+  "frameworks": {
+    "net451": {},
+    "net46": {},
+    "netstandard1.3": {
+      "dependencies": {
+        "NETStandard.Library": "1.6.0",
+        "System.Reflection.TypeExtensions": "4.1.0"
+      }
     }
+  },
+
+  "packOptions": {
+    "tags": ["lightmock-vnext"],
+    "licenseUrl": "http://opensource.org/licenses/MIT",
+    "repository": {
+      "url": "https://github.com/neil-119/LightMock"
+    }
+  }
 }

@@ -84,8 +84,8 @@ namespace ExpressionReflect
 			}
 
 			var executor = new ExpressionReflectionExecutor(node);
-
-			Type[] genericArguments = type.GetGenericArguments();
+            
+			Type[] genericArguments = type.GenericTypeArguments;
 			MethodInfo methodInfo = this.FindMethod(methodName, genericArguments);
 			@delegate = methodInfo.CreateDelegate(type, executor);
 
@@ -112,7 +112,7 @@ namespace ExpressionReflect
 			if (memberInfo is PropertyInfo)
 			{
 				object target = null;
-				if (!((PropertyInfo)memberInfo).GetGetMethod().IsStatic)
+				if (!((PropertyInfo)memberInfo).GetMethod.IsStatic)
 				{
 					target = this.GetValueFromStack();
 				}
